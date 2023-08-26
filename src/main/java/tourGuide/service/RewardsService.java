@@ -26,7 +26,7 @@ public class RewardsService {
 	private final GpsUtil gpsUtil;
 	private final RewardCentral rewardsCentral;
 
-	private final ExecutorService executorService = Executors.newFixedThreadPool(100);
+	private final ExecutorService executorService = Executors.newFixedThreadPool(1000);
 
 	public RewardsService(GpsUtil gpsUtil, RewardCentral rewardCentral) {
 		this.gpsUtil = gpsUtil;
@@ -70,17 +70,22 @@ public class RewardsService {
 	public void calculateRewardss(User user) {
 		List<VisitedLocation> userLocations = user.getVisitedLocations();
 		List<Attraction> attractions = gpsUtil.getAttractions();
+		List<UserReward> newRewards = new ArrayList<>(); // Create a list for new rewards
 
-		for(VisitedLocation visitedLocation : userLocations) {
-			for(Attraction attraction : attractions) {
-				if(user.getUserRewards().stream().filter(r -> r.attraction.attractionName.equals(attraction.attractionName)).count() == 0) {
-					if(nearAttraction(visitedLocation, attraction)) {
-						user.addUserReward(new UserReward(visitedLocation, attraction, getRewardPoints(attraction, user)));
+		for (VisitedLocation visitedLocation : userLocations) {
+			for (Attraction attraction : attractions) {
+				if (user.getUserRewards().stream().noneMatch(r -> r.attraction.attractionName.equals(attraction.attractionName))) {
+					if (nearAttraction(visitedLocation, attraction)) {
+						newRewards.add(new UserReward(visitedLocation, attraction, getRewardPoints(attraction, user)));
 					}
 				}
 			}
 		}
+
+		// After both loops are complete, add the new rewards to the user's rewards list
+		user.getUserRewards().addAll(newRewards);
 	}
+
 	
 	public boolean isWithinAttractionProximity(Attraction attraction, Location location) {
 		return getDistance(attraction, location) > attractionProximityRange ? false : true;
@@ -108,23 +113,36 @@ public class RewardsService {
         return statuteMiles;
 	}
 
+	/**
+	 * Renvoie l'instance de ExecutorService associée à cet objet.
+	 *
+	 * @return L'ExecutorService associée.
+	 */
 	public ExecutorService getExecutorService() {
-
 		return this.executorService;
 	}
 
+	/**
+	 * Attend que toutes les tâches en cours de l'ExecutorService soient terminées.
+	 * Après l'appel à cette méthode, l'ExecutorService sera arrêté pour empêcher
+	 * la soumission de nouvelles tâches.
+	 * Cette méthode bloque l'exécution jusqu'à ce que toutes les tâches soient terminées.
+	 */
 	public void waitAllWorkCompleted() {
-
+		// Arrête l'ExecutorService pour empêcher la soumission de nouvelles tâches.
 		this.getExecutorService().shutdown();
 
+		// Boucle tant que des tâches sont en cours d'exécution.
 		while (true) {
-
+			// Vérifie si toutes les tâches ont été terminées.
 			boolean isFinish = this.getExecutorService().isTerminated();
 
+			// Si toutes les tâches sont terminées, sort de la boucle.
 			if (isFinish) {
 				return;
 			}
 		}
 	}
+
 
 }

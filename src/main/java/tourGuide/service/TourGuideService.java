@@ -47,7 +47,7 @@ public class TourGuideService {
 			initializeInternalUsers();
 			logger.debug("Finished initializing users");
 		}
-		tracker = new Tracker(this);
+		tracker = new Tracker(this, rewardsService, gpsUtil);
 		addShutDownHook();
 	}
 	
@@ -58,7 +58,7 @@ public class TourGuideService {
 	public VisitedLocation getUserLocation(User user) {
 		VisitedLocation visitedLocation = (user.getVisitedLocations().size() > 0) ?
 			user.getLastVisitedLocation() :
-			trackUserLocation(user).join();
+			trackUserLocation(user);//.join();
 		return visitedLocation;
 	}
 
@@ -86,25 +86,32 @@ public class TourGuideService {
 		return providers;
 	}
 
-	public CompletableFuture<Void> trackAllUserLocation(List<User> users) {
-
-		List<CompletableFuture<VisitedLocation>> completableFutures = users.stream()
-				.map(user -> this.trackUserLocation(user))
-				.collect(Collectors.toList());
-		return CompletableFuture.allOf(completableFutures.toArray(new CompletableFuture[completableFutures.size()]));
+	public VisitedLocation trackUserLocation(User user) {
+		VisitedLocation visitedLocation = gpsUtil.getUserLocation(user.getUserId());
+		user.addToVisitedLocations(visitedLocation);
+		rewardsService.calculateRewards(user);
+		return visitedLocation;
 	}
 
-	public CompletableFuture<VisitedLocation> trackUserLocation(User user) {
-		return CompletableFuture.supplyAsync(() -> {
-			VisitedLocation visitedLocation = gpsUtil.getUserLocation(user.getUserId());
-			user.addToVisitedLocations(visitedLocation);
-
-			return visitedLocation;
-		}, this.executorService).thenApplyAsync((visitedLocation) -> {
-			rewardsService.calculateRewards(user);
-			return visitedLocation;
-		}, this.executorService);
-	}
+//	public CompletableFuture<Void> trackAllUserLocation(List<User> users) {
+//
+//		List<CompletableFuture<VisitedLocation>> completableFutures = users.stream()
+//				.map(user -> this.trackUserLocation(user))
+//				.collect(Collectors.toList());
+//		return CompletableFuture.allOf(completableFutures.toArray(new CompletableFuture[completableFutures.size()]));
+//	}
+//
+//	public CompletableFuture<VisitedLocation> trackUserLocation(User user) {
+//		return CompletableFuture.supplyAsync(() -> {
+//			VisitedLocation visitedLocation = gpsUtil.getUserLocation(user.getUserId());
+//			user.addToVisitedLocations(visitedLocation);
+//
+//			return visitedLocation;
+//		}, this.executorService).thenApplyAsync((visitedLocation) -> {
+//			rewardsService.calculateRewards(user);
+//			return visitedLocation;
+//		}, this.executorService);
+//	}
 
 	//Requette pour avoir tous les current locations des utilisateurs
 	public Map<String, Location> getAllCurrentLocations() {

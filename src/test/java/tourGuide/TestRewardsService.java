@@ -92,6 +92,6 @@ public class TestRewardsService {
 		tourGuideService.tracker.stopTracking();
 
 		// Vérifie que le nombre de récompenses correspond au nombre d'attractions
-		assertEquals(1, userRewards.size());
+		assertEquals(gpsUtil.getAttractions().size(), userRewards.size());
 	}
 }
