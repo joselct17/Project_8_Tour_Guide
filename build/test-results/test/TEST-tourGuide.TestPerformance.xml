@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="tourGuide.TestPerformance" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-08-29T13:57:29" hostname="DESKTOP-AAQRDG7" time="392.338">
+  <properties/>
+  <testcase name="highVolumeGetRewards" classname="tourGuide.TestPerformance" time="392.338"/>
+  <system-out><![CDATA[15:57:30.085 [Test worker] INFO tourGuide.service.TourGuideService - TestMode enabled
+15:57:30.091 [Test worker] DEBUG tourGuide.service.TourGuideService - Initializing users
+15:57:30.751 [Test worker] DEBUG tourGuide.service.TourGuideService - Created 100000 internal test users.
+15:57:30.751 [Test worker] DEBUG tourGuide.service.TourGuideService - Finished initializing users
+15:57:30.769 [pool-3-thread-1] DEBUG tourGuide.tracker.Tracker - Begin Tracker. Tracking100000 users.
+15:57:30.955 [Thread-5] DEBUG tourGuide.tracker.Tracker - Begin Tracker. Tracking100000 users.
+15:57:30.976 [Test worker] DEBUG tourGuide.TestPerformance - 10 users rewarded so far
+15:57:31.057 [pool-3-thread-1] DEBUG tourGuide.tracker.Tracker - 100000 completabmle futures launched
+15:57:31.061 [Thread-5] DEBUG tourGuide.tracker.Tracker - 100000 completabmle futures launched
+15:57:35.998 [Test worker] DEBUG tourGuide.TestPerformance - 1511 users rewarded so far
+15:57:41.021 [Test worker] DEBUG tourGuide.TestPerformance - 2739 users rewarded so far
+15:57:46.032 [Test worker] DEBUG tourGuide.TestPerformance - 3945 users rewarded so far
+15:57:51.043 [Test worker] DEBUG tourGuide.TestPerformance - 5116 users rewarded so far
+15:57:56.060 [Test worker] DEBUG tourGuide.TestPerformance - 6276 users rewarded so far
+15:58:01.081 [Test worker] DEBUG tourGuide.TestPerformance - 7329 users rewarded so far
+15:58:06.096 [Test worker] DEBUG tourGuide.TestPerformance - 8329 users rewarded so far
+15:58:11.111 [Test worker] DEBUG tourGuide.TestPerformance - 9489 users rewarded so far
+15:58:16.127 [Test worker] DEBUG tourGuide.TestPerformance - 10838 users rewarded so far
+15:58:21.147 [Test worker] DEBUG tourGuide.TestPerformance - 12104 users rewarded so far
+15:58:26.163 [Test worker] DEBUG tourGuide.TestPerformance - 13236 users rewarded so far
+15:58:31.174 [Test worker] DEBUG tourGuide.TestPerformance - 14402 users rewarded so far
+15:58:36.196 [Test worker] DEBUG tourGuide.TestPerformance - 15507 users rewarded so far
+15:58:41.212 [Test worker] DEBUG tourGuide.TestPerformance - 16627 users rewarded so far
+15:58:46.223 [Test worker] DEBUG tourGuide.TestPerformance - 17760 users rewarded so far
+15:58:51.238 [Test worker] DEBUG tourGuide.TestPerformance - 18868 users rewarded so far
+15:58:56.252 [Test worker] DEBUG tourGuide.TestPerformance - 19992 users rewarded so far
+15:59:01.266 [Test worker] DEBUG tourGuide.TestPerformance - 21361 users rewarded so far
+15:59:06.288 [Test worker] DEBUG tourGuide.TestPerformance - 22506 users rewarded so far
+15:59:11.301 [Test worker] DEBUG tourGuide.TestPerformance - 23656 users rewarded so far
+15:59:16.315 [Test worker] DEBUG tourGuide.TestPerformance - 24851 users rewarded so far
+15:59:21.329 [Test worker] DEBUG tourGuide.TestPerformance - 26036 users rewarded so far
+15:59:26.350 [Test worker] DEBUG tourGuide.TestPerformance - 27224 users rewarded so far
+15:59:31.365 [Test worker] DEBUG tourGuide.TestPerformance - 28480 users rewarded so far
+15:59:36.380 [Test worker] DEBUG tourGuide.TestPerformance - 29650 users rewarded so far
+15:59:41.390 [Test worker] DEBUG tourGuide.TestPerformance - 30803 users rewarded so far
+15:59:46.403 [Test worker] DEBUG tourGuide.TestPerformance - 31980 users rewarded so far
+15:59:51.420 [Test worker] DEBUG tourGuide.TestPerformance - 33166 users rewarded so far
+15:59:56.443 [Test worker] DEBUG tourGuide.TestPerformance - 34325 users rewarded so far
+16:00:01.467 [Test worker] DEBUG tourGuide.TestPerformance - 36037 users rewarded so far
+16:00:06.481 [Test worker] DEBUG tourGuide.TestPerformance - 37840 users rewarded so far
+16:00:11.502 [Test worker] DEBUG tourGuide.TestPerformance - 39607 users rewarded so far
+16:00:16.516 [Test worker] DEBUG tourGuide.TestPerformance - 41466 users rewarded so far
+16:00:21.531 [Test worker] DEBUG tourGuide.TestPerformance - 43285 users rewarded so far
+16:00:26.546 [Test worker] DEBUG tourGuide.TestPerformance - 45030 users rewarded so far
+16:00:31.559 [Test worker] DEBUG tourGuide.TestPerformance - 46847 users rewarded so far
+16:00:36.584 [Test worker] DEBUG tourGuide.TestPerformance - 48585 users rewarded so far
+16:00:41.598 [Test worker] DEBUG tourGuide.TestPerformance - 50352 users rewarded so far
+16:00:46.622 [Test worker] DEBUG tourGuide.TestPerformance - 52343 users rewarded so far
+16:00:51.633 [Test worker] DEBUG tourGuide.TestPerformance - 53793 users rewarded so far
+16:00:56.656 [Test worker] DEBUG tourGuide.TestPerformance - 55015 users rewarded so far
+16:01:01.671 [Test worker] DEBUG tourGuide.TestPerformance - 56228 users rewarded so far
+16:01:06.688 [Test worker] DEBUG tourGuide.TestPerformance - 57450 users rewarded so far
+16:01:11.707 [Test worker] DEBUG tourGuide.TestPerformance - 58697 users rewarded so far
+16:01:16.731 [Test worker] DEBUG tourGuide.TestPerformance - 59864 users rewarded so far
+16:01:21.755 [Test worker] DEBUG tourGuide.TestPerformance - 61046 users rewarded so far
+16:01:26.768 [Test worker] DEBUG tourGuide.TestPerformance - 62231 users rewarded so far
+16:01:31.782 [Test worker] DEBUG tourGuide.TestPerformance - 63520 users rewarded so far
+16:01:36.797 [Test worker] DEBUG tourGuide.TestPerformance - 64721 users rewarded so far
+16:01:41.820 [Test worker] DEBUG tourGuide.TestPerformance - 66003 users rewarded so far
+16:01:46.834 [Test worker] DEBUG tourGuide.TestPerformance - 67187 users rewarded so far
+16:01:51.849 [Test worker] DEBUG tourGuide.TestPerformance - 68401 users rewarded so far
+16:01:56.863 [Test worker] DEBUG tourGuide.TestPerformance - 69582 users rewarded so far
+16:02:01.884 [Test worker] DEBUG tourGuide.TestPerformance - 70698 users rewarded so far
+16:02:06.907 [Test worker] DEBUG tourGuide.TestPerformance - 71892 users rewarded so far
+16:02:11.932 [Test worker] DEBUG tourGuide.TestPerformance - 73143 users rewarded so far
+16:02:16.947 [Test worker] DEBUG tourGuide.TestPerformance - 74330 users rewarded so far
+16:02:21.962 [Test worker] DEBUG tourGuide.TestPerformance - 75426 users rewarded so far
+16:02:26.986 [Test worker] DEBUG tourGuide.TestPerformance - 76618 users rewarded so far
+16:02:32.010 [Test worker] DEBUG tourGuide.TestPerformance - 77885 users rewarded so far
+16:02:37.025 [Test worker] DEBUG tourGuide.TestPerformance - 79085 users rewarded so far
+16:02:42.039 [Test worker] DEBUG tourGuide.TestPerformance - 80246 users rewarded so far
+16:02:47.063 [Test worker] DEBUG tourGuide.TestPerformance - 81426 users rewarded so far
+16:02:52.077 [Test worker] DEBUG tourGuide.TestPerformance - 82655 users rewarded so far
+16:02:57.091 [Test worker] DEBUG tourGuide.TestPerformance - 83895 users rewarded so far
+16:03:02.117 [Test worker] DEBUG tourGuide.TestPerformance - 85111 users rewarded so far
+16:03:07.131 [Test worker] DEBUG tourGuide.TestPerformance - 86316 users rewarded so far
+16:03:12.147 [Test worker] DEBUG tourGuide.TestPerformance - 87534 users rewarded so far
+16:03:17.163 [Test worker] DEBUG tourGuide.TestPerformance - 88725 users rewarded so far
+16:03:20.073 [pool-3-thread-1] DEBUG tourGuide.tracker.Tracker - Tracker Time Elapsed: 349 seconds.
+16:03:20.074 [pool-3-thread-1] DEBUG tourGuide.tracker.Tracker - Tracker sleeping
+16:03:22.191 [Test worker] DEBUG tourGuide.TestPerformance - 89919 users rewarded so far
+16:03:27.207 [Test worker] DEBUG tourGuide.TestPerformance - 91128 users rewarded so far
+16:03:32.221 [Test worker] DEBUG tourGuide.TestPerformance - 92335 users rewarded so far
+16:03:37.249 [Test worker] DEBUG tourGuide.TestPerformance - 93532 users rewarded so far
+16:03:42.263 [Test worker] DEBUG tourGuide.TestPerformance - 94720 users rewarded so far
+16:03:47.289 [Test worker] DEBUG tourGuide.TestPerformance - 95940 users rewarded so far
+16:03:47.786 [Thread-5] DEBUG tourGuide.tracker.Tracker - Tracker Time Elapsed: 376 seconds.
+16:03:47.786 [Thread-5] DEBUG tourGuide.tracker.Tracker - Tracker sleeping
+16:03:52.313 [Test worker] DEBUG tourGuide.TestPerformance - 98235 users rewarded so far
+16:03:57.328 [Test worker] DEBUG tourGuide.TestPerformance - 100000 users rewarded so far
+16:04:02.329 [pool-3-thread-1] DEBUG tourGuide.tracker.Tracker - Tracker stopping
+highVolumeGetRewards: Time Elapsed: 392 seconds.
+]]></system-out>
+  <system-err><![CDATA[Aug 29, 2023 3:57:30 PM org.javamoney.moneta.DefaultMonetaryContextFactory createMonetaryContextNonNullConfig
+INFO: Using custom MathContext: precision=256, roundingMode=HALF_EVEN
+]]></system-err>
+</testsuite>
