@@ -85,40 +85,70 @@ public class Tracker extends Thread {
 //	}
 
 
+	// Redéfinition de la méthode run() pour l'exécution du thread
 	@Override
 	public void run() {
+		// Création d'une instance de StopWatch pour mesurer le temps d'exécution
 		StopWatch stopWatch = new StopWatch();
 
+		// Boucle while infinie
 		while (true) {
+			// Vérification si le thread actuel a été interrompu ou si la variable "stop" est vraie
 			if (Thread.currentThread().isInterrupted() || stop) {
+				// Affichage d'un message de journalisation indiquant l'arrêt du suivi
 				logger.debug("Tracker stopping");
+				// Sortie de la boucle while
 				break;
 			}
 
+			// Récupération de la liste de tous les utilisateurs
 			List<User> users = tourGuideService.getAllUsers();
 
+			// Boucle while pour le suivi des utilisateurs
 			while (!stop) {
-				logger.debug("Begin Tracker. Tracking" + users.size() + " users.");
+				// Affichage d'un message de journalisation indiquant le début du suivi et le nombre d'utilisateurs
+				logger.debug("Begin Tracker. Tracking " + users.size() + " users.");
+				// Démarrage du chronomètre
 				stopWatch.start();
+
+				// Création d'un tableau de CompletableFuture à partir du traitement asynchrone de chaque utilisateur
 				CompletableFuture[] list = users.stream()
-						.map(user -> CompletableFuture.runAsync(() -> user.addToVisitedLocations(gpsUtil.getUserLocation(user.getUserId())), executor)
-								.thenAccept(location->rewardsService.calculateRewards(user))
-						).toArray(CompletableFuture[]::new);
+						.map(user -> CompletableFuture.runAsync(
+								() -> user.addToVisitedLocations(gpsUtil.getUserLocation(user.getUserId())),
+								executor
+						).thenAccept(location -> rewardsService.calculateRewards(user)))
+						.toArray(CompletableFuture[]::new);
+
+				// Création d'un CompletableFuture qui attend la fin de tous les CompletableFuture dans "list"
 				CompletableFuture waitEnd = CompletableFuture.allOf(list);
-				LoggerFactory.getLogger(Tracker.class).debug("{} completabmle futures launched", list.length);
+
+				// Journalisation du nombre de CompletableFuture lancés
+				LoggerFactory.getLogger(Tracker.class).debug("{} CompletableFuture launched", list.length);
+
+				// Attendre la fin de l'exécution de tous les CompletableFuture
 				waitEnd.join();
+
+				// Arrêt du chronomètre
 				stopWatch.stop();
+
+				// Affichage du temps écoulé en secondes pendant le suivi
 				logger.debug("Tracker Time Elapsed: " + TimeUnit.MILLISECONDS.toSeconds(stopWatch.getTime()) + " seconds.");
+
+				// Réinitialisation du chronomètre
 				stopWatch.reset();
-				try{
+
+				try {
+					// Journalisation de la mise en veille du thread
 					logger.debug("Tracker sleeping");
+					// Mise en veille du thread pendant "trackingPollingInterval" secondes
 					TimeUnit.SECONDS.sleep(trackingPollingInterval);
-				}catch (InterruptedException e) {
+				} catch (InterruptedException e) {
+					// Sortie de la boucle interne si le thread est interrompu pendant la mise en veille
 					break;
 				}
-
 			}
 		}
 	}
+
 
 }
