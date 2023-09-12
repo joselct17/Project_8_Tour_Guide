@@ -93,25 +93,7 @@ public class TourGuideService {
 		return visitedLocation;
 	}
 
-//	public CompletableFuture<Void> trackAllUserLocation(List<User> users) {
-//
-//		List<CompletableFuture<VisitedLocation>> completableFutures = users.stream()
-//				.map(user -> this.trackUserLocation(user))
-//				.collect(Collectors.toList());
-//		return CompletableFuture.allOf(completableFutures.toArray(new CompletableFuture[completableFutures.size()]));
-//	}
-//
-//	public CompletableFuture<VisitedLocation> trackUserLocation(User user) {
-//		return CompletableFuture.supplyAsync(() -> {
-//			VisitedLocation visitedLocation = gpsUtil.getUserLocation(user.getUserId());
-//			user.addToVisitedLocations(visitedLocation);
-//
-//			return visitedLocation;
-//		}, this.executorService).thenApplyAsync((visitedLocation) -> {
-//			rewardsService.calculateRewards(user);
-//			return visitedLocation;
-//		}, this.executorService);
-//	}
+
 
 	//Requette pour avoir tous les current locations des utilisateurs
 	public Map<String, Location> getAllCurrentLocations() {
