@@ -25,7 +25,7 @@ import tourGuide.model.user.User;
 public class TestPerformance {
 	
 	/*
-	 * A note on performance improvements:
+	 * A note on performance improvements :
 	 *     
 	 *     The number of users generated for the high volume tests can be easily adjusted via this method:
 	 *     
